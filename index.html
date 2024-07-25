@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="./main.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <section>
+      <input placeholder="search" id="search" />
+    </section>
+    <div class="root"></div>
+    <button id="dark">dark</button>
+    <button id="white">white</button>
+
+    <section>
+      <div class="paper">
+        <div class="w-33">111</div>
+        <div class="w-33">222</div>
+        <div class="w-33">333</div>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    let users;
+
+    const getUsers = async () => {
+      const res = await fetch("https://jsonplaceholder.typicode.com/users");
+      users = await res.json();
+    };
+
+    getUsers();
+
+    const obj = [
+      {
+        id: 1,
+        name: "taha",
+      },
+      {
+        id: 2,
+        name: "ali",
+      },
+    ];
+
+    const handleChange = (e) => {
+      console.log(e);
+    };
+
+    const root = document.querySelector(".root");
+    const darkBtn = document.querySelector("#dark");
+    const whiteBtn = document.querySelector("#white");
+    const search = document.querySelector("#search");
+
+    darkBtn.addEventListener("click", () => {
+      root.classList.add("dark");
+      root.classList.remove("white");
+      console.log("log");
+    });
+    whiteBtn.addEventListener("click", () => {
+      root.classList.add("white");
+      root.classList.remove("dark");
+    });
+    //
+    search.addEventListener("change", (e) => {
+      const value = e.target.value;
+
+      const isExist = obj.find((user) => user.name === value);
+
+      if (isExist) {
+        alert("hast");
+      } else {
+        alert("nist");
+      }
+    });
+  </script>
+</html>
